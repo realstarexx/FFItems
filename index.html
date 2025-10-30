@@ -133,7 +133,7 @@
     border-radius: var(--pill-radius);
     padding: var(--spacing-sm) var(--spacing-lg);
     cursor: pointer;
-    transition: background var(--transition-medium);
+    transition: background var(--transition-medium), transform var(--transition-fast);
     font-size: var(--font-size-lg);
     font-weight: 500;
     font-family: var(--font-main);
@@ -144,8 +144,8 @@
     background: var(--hover-primary);
   }
 
-  .header-pill.active {
-    background: var(--accent-secondary);
+  .header-pill:active {
+    transform: scale(0.9);
   }
 
   .mode-tabs {
@@ -165,7 +165,7 @@
     background: #121212;
     color: var(--text-primary);
     cursor: pointer;
-    transition: background var(--transition-medium);
+    transition: background var(--transition-medium), transform var(--transition-fast);
     font-size: var(--font-size-lg);
     font-weight: 500;
     font-family: var(--font-main);
@@ -175,7 +175,9 @@
     background: var(--accent-primary);
     color: var(--bg-primary);
   }
-
+  .mode-tab:active {
+    transform: scale(0.9);
+  }
   .main-content {
     margin-top: 50px;
     width: 100%;
@@ -271,8 +273,11 @@
     height: var(--modal-icon-size);
     object-fit: contain;
     cursor: pointer;
+    transition: background var(--transition-medium), transform var(--transition-fast);
   }
-
+  .modal-icon:active {
+    transform: scale(0.9);
+  }
   .json-data {
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
@@ -465,8 +470,11 @@
     font-weight: 500;
     font-family: var(--font-main);
     cursor: pointer;
+    transition: transform var(--transition-fast)
   }
-
+  .footer-pill:active {
+    transform: scale(0.9);
+  }
   .item-details {
     font-family: var(--font-main);
     font-size: var(--font-size-md);
@@ -960,11 +968,11 @@ function createPrettyDetails(item) {
     
     let typeRarityText = '';
     if (item.type && item.Rare) {
-      typeRarityText = `${item.type} in ${item.Rare} rarity`;
+      typeRarityText = `${item.type}, ${item.Rare}`;
     } else if (item.type) {
       typeRarityText = `${item.type}`;
     } else if (item.Rare) {
-      typeRarityText = `${item.Rare} rarity`;
+      typeRarityText = `${item.Rare}`;
     }
     
     const typeRarityValue = document.createElement('span');
