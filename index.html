@@ -184,6 +184,7 @@
     align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
+    user-select: none;
   }
 
   .header {
@@ -542,6 +543,8 @@
   box-sizing: border-box;
   left: 50%;
   transform: translateX(-50%) translateY(30px);
+  user-select: text !important;
+  pointer-events: auto !important;
 }
 
 .details-card.active {
@@ -645,6 +648,7 @@
         grid: null,
         fadeBg: null,
         pagePill: null,
+        footerPill: null,
         searchPill: null,
         typePill: null,
         rarityPill: null,
@@ -703,6 +707,7 @@
         state.grid = document.getElementById('grid');
         state.fadeBg = document.getElementById('fadeBg');
         state.pagePill = document.getElementById('pagePill');
+        state.footerPill = document.getElementById('footerPill');
         state.searchPill = document.getElementById('searchPill');
         state.typePill = document.getElementById('typePill');
         state.rarityPill = document.getElementById('rarityPill');
@@ -736,6 +741,8 @@
             handleModeTabClick(target);
         } else if (target.classList.contains('header-pill')) {
             handleHeaderPillClick(target);
+        } else if (target.classList.contains('footer-pill')) {
+            handleFooterPillClick(target);
         } else if (target.classList.contains('sheet-page-btn')) {
             handlePageButtonClick(target);
         } else if (target.classList.contains('filter-btn')) {
@@ -794,14 +801,18 @@
     }
 
     function handleHeaderPillClick(target) {
-        if (target.id === 'pagePill') {
-            openPageSheet();
-        } else if (target.id === 'searchPill') {
+        if (target === state.searchPill) {
             openSearchSheet();
-        } else if (target.id === 'typePill') {
+        } else if (target === state.typePill) {
             openTypeSheet();
-        } else if (target.id === 'rarityPill') {
+        } else if (target === state.rarityPill) {
             openRaritySheet();
+        }
+    }
+
+    function handleFooterPillClick(target) {
+        if (target === state.pagePill) {
+            openPageSheet();
         }
     }
 
